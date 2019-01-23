@@ -15,20 +15,14 @@ class Task extends Model
 
     public function create()
     {
-        mysqli_report(MYSQLI_REPORT_ALL);
-        echo 0;
         if (isset($_POST['user']) && isset($_POST['email']) && isset($_POST['text'])) {
-            echo 0;
             if (!is_numeric($_POST['user']) && $this->validateEmail($_POST['email'])) {
-                echo 0;
                 if (isset($_POST['state'])) {
                     $state = 1;
                 } else {
                     $state = 0;
                 }
-                echo 0;
                 if ($mysqli = $this->connectDb()) {
-                    echo 0;
                     $user = $_POST['user'];
                     $email = $_POST['email'];
                     $text = $_POST['text'];
@@ -36,7 +30,6 @@ class Task extends Model
                     $query = "INSERT INTO task (`user`, `email`, `text`, `state`) VALUES (?,?,?,?)";
                     $stmt = $mysqli->prepare($query);
                     if ($stmt) {
-                        echo 0;
                         $stmt->bind_param("sssi", $user, $email, $text, $state);
                         $stmt->execute();
                         $stmt->close();
@@ -96,8 +89,6 @@ class Task extends Model
         }
         return false;
     }
-
-
 
     public function delete()
     {

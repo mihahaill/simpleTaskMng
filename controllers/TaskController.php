@@ -13,7 +13,6 @@ class TaskController extends Controller
 
     function action_index()
     {
-        $this->model->palind();
         $data = $this->model->getData();
         $this->view->render('task.php', 'template.php', $data);
     }
@@ -41,7 +40,6 @@ class TaskController extends Controller
             header('Location: /');
             exit();
         }
-        exit();
         $this->view->render('create.php', 'template.php');
     }
 
